@@ -8,10 +8,8 @@ import java.awt.event.ActionListener;
 public class Gui extends JFrame implements ActionListener {
 
     // Attribute
-    private String spieler;
-    private JButton neuesSpiel, rueckSetzen;
-    private JButton [] buttons = new JButton[9];
-    private JPanel panelFeld, panelBedienung;
+    private String spieler = "O";
+    final private JButton [] buttons = new JButton[9];
 
 
     // Constructor
@@ -20,10 +18,10 @@ public class Gui extends JFrame implements ActionListener {
     }
     // Methoden
     private void erzeugeFeld(){
-        panelFeld = new JPanel();
-        panelBedienung = new JPanel();
-        neuesSpiel = new JButton("Neues Spiel");
-        rueckSetzen = new JButton("Zurücksetzen");
+        JPanel panelFeld = new JPanel();
+        JPanel panelBedienung = new JPanel();
+        JButton neuesSpiel = new JButton("Neues Spiel");
+        JButton rueckSetzen = new JButton("Zurücksetzen");
 
         add(panelFeld, BorderLayout.CENTER);
         add(panelBedienung, BorderLayout.EAST);
@@ -64,26 +62,22 @@ public class Gui extends JFrame implements ActionListener {
     }
 
     public boolean istSpielAus(JButton [] knoepfe){
-        if(
-                (buttons[0].getText() != "" &&buttons[0].getText() == buttons[1].getText() && buttons[0].getText() == buttons[2].getText()) ||
-                (buttons[3].getText() != "" &&buttons[3].getText() == buttons[4].getText() && buttons[3].getText() == buttons[5].getText()) ||
-                (buttons[6].getText() != "" &&buttons[6].getText() == buttons[7].getText() && buttons[6].getText() == buttons[8].getText())||
-                (buttons[0].getText() != "" &&buttons[0].getText() == buttons[3].getText() && buttons[0].getText() == buttons[6].getText())||
-                (buttons[1].getText() != "" &&buttons[1].getText() == buttons[4].getText() && buttons[1].getText() == buttons[7].getText())||
-                (buttons[2].getText() != "" &&buttons[2].getText() == buttons[5].getText() && buttons[2].getText() == buttons[8].getText())||
-                (buttons[0].getText() != "" &&buttons[0].getText() == buttons[4].getText() && buttons[0].getText() == buttons[8].getText())||
-                (buttons[2].getText() != "" &&buttons[2].getText() == buttons[4].getText() && buttons[2].getText() == buttons[6].getText())
-        )
-            return true;
-        return false;
+        return (!knoepfe[0].getText().equals("") && knoepfe[0].getText().equals(knoepfe[1].getText()) && knoepfe[0].getText().equals(knoepfe[2].getText())) ||
+                (!knoepfe[3].getText().equals("") && knoepfe[3].getText().equals(knoepfe[4].getText()) && knoepfe[3].getText().equals(knoepfe[5].getText())) ||
+                (!knoepfe[6].getText().equals("") && knoepfe[6].getText().equals(knoepfe[7].getText()) && knoepfe[6].getText().equals(knoepfe[8].getText())) ||
+                (!knoepfe[0].getText().equals("") && knoepfe[0].getText().equals(knoepfe[3].getText()) && knoepfe[0].getText().equals(knoepfe[6].getText())) ||
+                (!knoepfe[1].getText().equals("") && knoepfe[1].getText().equals(knoepfe[4].getText()) && knoepfe[1].getText().equals(knoepfe[7].getText())) ||
+                (!knoepfe[2].getText().equals("") && knoepfe[2].getText().equals(knoepfe[5].getText()) && knoepfe[2].getText().equals(knoepfe[8].getText())) ||
+                (!knoepfe[0].getText().equals("") && knoepfe[0].getText().equals(knoepfe[4].getText()) && knoepfe[0].getText().equals(knoepfe[8].getText())) ||
+                (!knoepfe[2].getText().equals("") && knoepfe[2].getText().equals(knoepfe[4].getText()) && knoepfe[2].getText().equals(knoepfe[6].getText()));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(spieler == "X") spieler = "O";
+        if(spieler.equals("X")) spieler = "O";
         else spieler = "X";
         JButton button = (JButton) e.getSource();
-        if(button.getText() == "") button.setText(spieler);
+        if(button.getText().equals("")) button.setText(spieler);
         if(istSpielAus(buttons)) {
             System.out.println("Das Spiel ist aus");
             for(int i = 0; i < 9; i++) buttons[i].setEnabled(false);
