@@ -28,7 +28,7 @@ public class Gui extends JFrame implements ActionListener {
         add(panelFeld, BorderLayout.CENTER);
         add(panelBedienung, BorderLayout.EAST);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("PeNiS lMaO moin Justin du keks");
+        setTitle("TicTacToe!");
 
         panelFeld.setLayout(new GridLayout(0, 3));
         panelBedienung.setLayout(new GridLayout(0, 1));
