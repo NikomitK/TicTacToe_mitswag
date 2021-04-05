@@ -44,12 +44,14 @@ public class Gui extends JFrame implements ActionListener {
             for(int i = 0; i<9; i++){
                 buttons[i].setText("");
                 buttons[i].setEnabled(true);
+                setTitle("TicTacToe!");
             }
         });
         rueckSetzen.addActionListener((ActionEvent e) -> {
             for(int i = 0; i<9; i++){
                 buttons[i].setText("");
                 buttons[i].setEnabled(true);
+                setTitle("TicTacToe!");
             }
         });
         panelBedienung.add(neuesSpiel);
@@ -85,6 +87,7 @@ public class Gui extends JFrame implements ActionListener {
         if(istSpielAus(buttons)) {
             System.out.println("Das Spiel ist aus");
             for(int i = 0; i < 9; i++) buttons[i].setEnabled(false);
+            setTitle("TicTacToe!  " + spieler + " hat gewonnen!");
         }
     }
 
